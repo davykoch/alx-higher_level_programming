@@ -12,7 +12,7 @@ def main():
         print("Number of arguments: {}:".format(arg_count))
 
     for i in range(1, len(argv)):
-        print("{}: {}".format(i, argv[i]))
+        print("{}: {}".format(i, argv[i]), end=' ')
 
 
 if __name__ == "__main__":

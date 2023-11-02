@@ -1,9 +1,9 @@
 #!/usr/bin/python3
-import sys
+from sys import argv
 
 
 def main():
-    arg_count = len(sys.argv) - 1  # Exclude the script name
+    arg_count = len(argv) - 1  # Exclude the script name
     if arg_count == 0:
         print("Number of arguments: 0.")
     elif arg_count == 1:
@@ -11,8 +11,8 @@ def main():
     else:
         print("Number of arguments: {}:".format(arg_count))
 
-    for i in range(1, len(sys.argv)):
-        print("{}: {}".format(i, sys.argv[i]))
+    for i in range(1, len(argv)):
+        print("{}: {}".format(i, argv[i]))
 
 
 if __name__ == "__main__":

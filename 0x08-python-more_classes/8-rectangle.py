@@ -1,5 +1,5 @@
 #!/usr/bin/python3
-"""Class Rectangle that defines a rectangle by: (based on 6-rectangle.py)"""
+"""Class Rectangle that defines a rectangle by: (based on 7-rectangle.py)"""
 
 
 class Rectangle:
@@ -56,6 +56,20 @@ class Rectangle:
 
     def __repr__(self):
         return "Rectangle({}, {})".format(self.__width, self.__height)
+
+    @staticmethod
+    def bigger_or_equal(rect_1, rect_2):
+        """Returns the biggest rectangle based on the area,
+        or rect_1 if both are equal."""
+
+        if not isinstance(rect_1, Rectangle):
+            raise TypeError("rect_1 must be an instance of Rectangle")
+        if not isinstance(rect_2, Rectangle):
+            raise TypeError("rect_2 must be an instance of Rectangle")
+
+        if rect_1.area() >= rect_2.area():
+            return rect_1
+        return rect_2
 
     def __del__(self):
         print("Bye rectangle...")

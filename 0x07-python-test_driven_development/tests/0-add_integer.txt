@@ -30,3 +30,15 @@ b must be an integer
 ... except TypeError as e:
 ...     print(e)
 a must be an integer
+
+# Test Case 7: Handling OverflowError
+>>> add_integer(float('inf'), 2)
+Traceback (most recent call last):
+...
+OverflowError: cannot convert float infinity to integer
+
+# Test Case 8: converting float NaN to int errors
+>>> add_integer(float('NaN'), 2)
+Traceback (most recent call last):
+...
+ValueError: cannot convert float NaN to integer

@@ -1,0 +1,27 @@
+import unittest
+add_integer = _import_('0-add_integer').add_integer
+
+class TestAddInteger(unittest.TestCase):
+    """
+    This class contains unittests for the add_integer function.
+    """
+
+    def test_integers(self):
+        """ Test with integers """
+        self.assertEqual(add_integer(1, 2), 3)
+        self.assertEqual(add_integer(100, -2), 98)
+        self.assertEqual(add_integer(2), 100)
+
+    def test_floats(self):
+        """ Test with floats """
+        self.assertEqual(add_integer(100.3, -2), 98)
+
+    def test_errors(self):
+        """ Test with incorrect types """
+        with self.assertRaises(TypeError):
+            add_integer(4, "School")
+        with self.assertRaises(TypeError):
+            add_integer(None)
+
+if _name_ == '_main_':
+    unittest.main()

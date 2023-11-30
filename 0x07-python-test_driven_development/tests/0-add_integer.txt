@@ -1,5 +1,3 @@
-# Run with: python3 -m doctest -v ./tests/0-add_integer.txt
-
 # Import the module using __import__
 >>> add_integer = __import__('0-add_integer').add_integer
 

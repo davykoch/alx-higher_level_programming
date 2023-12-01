@@ -8,16 +8,16 @@ def matrix_mul(m_a, m_b):
     """Return the matrix resulting of
     the multiplication of m_a and m_b."""
 
-    if type(m_a) is not list:
+    if not isinstance(m_a, list):
         raise TypeError("m_a must be a list")
-    if type(m_b) is not list:
+    if not isinstance(m_b, list):
         raise TypeError("m_b must be a list")
 
     for x in m_a:
-        if type(x) is not list:
+        if not isinstance(x, list):
             raise TypeError("m_a must be a list of lists")
     for x in m_b:
-        if type(x) is not list:
+        if not isinstance(x, list):
             raise TypeError("m_b must be a list of lists")
 
     if m_a == [] or m_a == [[]]:
@@ -27,23 +27,23 @@ def matrix_mul(m_a, m_b):
 
     for row in m_a:
         for x in row:
-            if type(x) is not int and type(x) is not float:
+            if not isinstance(x, int) and not isinstance(x, float):
                 raise TypeError("m_a should contain only integers or floats")
     for row in m_b:
         for x in row:
-            if type(x) is not int and type(x) is not float:
+            if not isinstance(x, int) and not isinstance(x, float):
                 raise TypeError("m_b should contain only integers or floats")
 
     row_len = []
     for row in m_a:
         row_len.append(len(row))
     if not all(elem == row_len[0] for elem in row_len):
-            raise TypeError("each row of m_a must should be of the same size")
+        raise TypeError("each row of m_a must should be of the same size")
     row_len = []
     for row in m_b:
         row_len.append(len(row))
     if not all(elem == row_len[0] for elem in row_len):
-            raise TypeError("each row of m_b must should be of the same size")
+        raise TypeError("each row of m_b must should be of the same size")
 
     a_col = 0
     for col in m_a[0]:
@@ -63,4 +63,3 @@ def matrix_mul(m_a, m_b):
                 result[i][j] += m_a[i][k] * m_b[k][j]
 
     return result
-	

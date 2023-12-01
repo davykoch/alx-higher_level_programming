@@ -9,21 +9,17 @@ There should be no space at the beginning or at the end of each printed line
 
 def text_indentation(text):
     """
-    Print a text with 2 new lines after each of these characters: ., ? and :
-
-    Args:
-        text (str): The input text.
-
-    Raises:
-        TypeError: If text is not a string.
+    prints a text
+    args:
+        text(string)
+    no space at the beginning or end of each printed line
     """
 
-    if not isinstance(text, str):
+    if type(text) is not str:
         raise TypeError("text must be a string")
 
-    text = text.strip()
+    for delim in ".:?":
+        text = (delim + "\n\n").join(
+            [line.strip(" ") for line in text.split(delim)])
 
-    for char in text:
-        print(char, end="")
-        if char in ".?:":
-            print("\n")
+    print(f"{text}", end="")

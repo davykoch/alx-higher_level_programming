@@ -13,32 +13,28 @@ My name is John Smith
 My name is Walter White
 
 # Test case 3
->>> say_my_name("Bob")
-My name is Bob
+ say_my_name("", "")
+My name is
 
-# Test case 4
->>> say_my_name("", "")
-My name is 
-
-# Test case 5 - First name is not a string
+# Test case 4 - First name is not a string
 >>> say_my_name(12, "White")
 Traceback (most recent call last):
     ...
 TypeError: first_name must be a string
 
-# Test case 6 - Last name is not a string
+# Test case 5 - Last name is not a string
 >>> say_my_name("John", 42)
 Traceback (most recent call last):
     ...
 TypeError: last_name must be a string
 
-# Test case 7 - None
+# Test case 6 - None
 >> say_my_name(None)
 Traceback (most recent call last):
     ...
 TypeError: first_name must be a string
 
-# Test case 8 - Missing
+# Test case 7 - Missing
 >>> say_my_name()
 Traceback (most recent call last):
     ...

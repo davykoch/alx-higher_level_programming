@@ -40,7 +40,8 @@ class Rectangle(Base):
         self.__height = value
 
     def area(self):
-        return self.__width * self.__height
+        """returns the current square area"""
+		return self.__width * self.__height
 
     @property
     def x(self):

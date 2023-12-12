@@ -42,7 +42,7 @@ class Rectangle(Base):
     def area(self):
         """returns the current square area"""
         return self.__width * self.__height
-	
+
     def display(self):
         """prints the Rectangle instance with the '#' character """
         for _ in range(self.height):

@@ -32,7 +32,7 @@ class Square(Rectangle):
 
     def update(self, *args, **kwargs):
         """assigns an argument to each attribute"""
-        attr_order = ['id', 'size', 'size', 'x', 'y']
+        attr_order = ['id', 'size', 'x', 'y']
         if args:
             for i, arg in enumerate(args):
                 if i < len(attr_order):

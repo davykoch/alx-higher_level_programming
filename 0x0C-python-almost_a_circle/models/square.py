@@ -42,3 +42,11 @@ class Square(Rectangle):
                 if key in attr_order:
                     setattr(self, key, value)
 
+    def to_dictionary(self):
+        """ Return the dictionary representation of a Rectangle """
+        return {
+            'id': self.id,
+            'size': self.size,
+            'x': self.x,
+            'y': self.y
+        }

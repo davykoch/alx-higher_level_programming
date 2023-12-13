@@ -29,3 +29,15 @@ class Square(Rectangle):
             raise ValueError("width must be > 0")
         self.width = value
         self.height = value
+
+    def update(self, *args, **kwargs):
+        """assigns an argument to each attribute"""
+        attr_order = ['id', 'size', 'size', 'x', 'y']
+        if args:
+            for i, arg in enumerate(args):
+                if i < len(attr_order):
+                    setattr(self, attr_order[i], arg)
+        else:
+            for key, value in kwargs.items():
+                if key in attr_order:
+                    setattr(self, key, value)

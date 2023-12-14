@@ -2,6 +2,7 @@
 """This module contains the base class of the project."""
 
 import json
+import os
 
 
 class Base:
@@ -48,3 +49,14 @@ class Base:
             dummy_instance = cls(1)
         dummy_instance.update(**dictionary)
         return dummy_instance
+
+    @classmethod
+    def load_from_file(cls):
+        """ Return a list of instances from a file """
+        filename = cls.__name__ + ".json"
+        if not os.path.isfile(filename):
+            return []
+
+        with open(filename, "r") as file:
+            list_dicts = cls.from_json_string(file.read())
+        return [cls.create(**dct) for dct in list_dicts]

@@ -2,4 +2,4 @@
 -- Results should display both the score and the name (in this order)
 -- Records should be ordered by score (top first)
 SHOW CREATE TABLE second_table
-ORDERED BY score, name, score DESC;
+ORDERED BY score DESC, name;

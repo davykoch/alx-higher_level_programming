@@ -1,4 +1,5 @@
 #!/usr/bin/node
+// adds properties and methods
 class Rectangle {
 	constructor(w, h) {
 	  this.width = w;
@@ -6,4 +7,4 @@ class Rectangle {
 	}
   }
   
-  module.exports = Rectangle;
+  module.exports = Rectangle;  

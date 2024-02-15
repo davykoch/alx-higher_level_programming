@@ -1,5 +1,4 @@
 #!/usr/bin/node
-const add = require('./add');
-
-const result = add(5, 7);
-console.log(result);
+exports.add = function (a, b) {
+  return (a + b);
+};

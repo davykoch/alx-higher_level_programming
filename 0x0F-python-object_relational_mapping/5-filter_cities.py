@@ -28,7 +28,8 @@ if __name__ == "__main__":
     cursor = db.cursor()
 
     query = "SELECT cities.name FROM cities \
-             LEFT JOIN states ON cities.state_id = states.id \
+             LEFT JOIN states \
+			 ON states_id = cities.state_id \
              WHERE states.name LIKE BINARY %s \
              ORDER BY cities.id ASC"
     cursor.execute(query, (state_name,))

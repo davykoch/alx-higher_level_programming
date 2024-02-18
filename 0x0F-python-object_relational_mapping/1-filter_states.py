@@ -13,7 +13,7 @@ if __name__ == "__main__":
         sys.exit(1)
 
     database = sys.argv[3]
-    user = sys.argv[1]
+    username = sys.argv[1]
     password = sys.argv[2]
 
     db = MySQLdb.connect(

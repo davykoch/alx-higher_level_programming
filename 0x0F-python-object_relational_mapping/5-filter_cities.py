@@ -27,9 +27,10 @@ if __name__ == "__main__":
 
     cursor = db.cursor()
 
-    query = "SELECT name FROM cities \
-             WHERE state_id = (SELECT id FROM states WHERE name = %s) \
-             ORDER BY id ASC"
+    query = "SELECT cities.name FROM cities\
+                 LEFT JOIN states\
+                 ON states.id = cities.state_id\
+                 WHERE states.name LIKE BINARY (%s) ORDER BY id ASC"
     cursor.execute(query, (state_name,))
 
     rows = cursor.fetchall()

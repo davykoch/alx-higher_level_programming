@@ -8,9 +8,13 @@ import sys
 
 
 if __name__ == "__main__":
-    db_name = sys.argv[3]
-    user = sys.argv[1]
+    if len(sys.argv) != 4:
+        print("Usage: {} <username> <password> <database>".format(sys.argv[0]))
+        sys.exit(1)
+
+    username = sys.argv[1]
     password = sys.argv[2]
+    database = sys.argv[3]
 
     db = MySQLdb.connect(
         host="localhost",

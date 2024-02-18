@@ -1,51 +1,39 @@
 #!/usr/bin/python3
 """
-Takes in the name of a state as an argument and lists all cities of that state.
+Script that lists all cities of a given state from the hbtn_0e_4_usa database
 """
+
 import MySQLdb
 import sys
 
-
 if __name__ == "__main__":
-    if len(sys.argv) != 5:
-        print("Usage: {} <username> <password> <database> <state_name>"
-              .format(sys.argv[0]))
-        sys.exit(1)
+    # Connect to the database
+    db = MySQLdb.connect(
+        host='localhost',
+        user=sys.argv[1],
+        passwd=sys.argv[2],
+        db=sys.argv[3],
+        port=3306
+    )
 
-    user = sys.argv[1]
-    password = sys.argv[2]
-    database = sys.argv[3]
+    # Get the state name from command line arguments
     state_name = sys.argv[4]
 
-    try:
-        db = MySQLdb.connect(
-            host="localhost",
-            port=3306,
-            user=user,
-            passwd=password,
-            db=database
-        )
+    # Create a cursor and execute the query
+    cur = db.cursor()
+    cur.execute("SELECT cities.name FROM cities\
+                 LEFT JOIN states\
+                 ON states.id = cities.state_id\
+                 WHERE states.name LIKE BINARY (%s) ORDER BY cities.id ASC",
+                (state_name,))
 
-        cursor = db.cursor()
+    # Fetch all rows and close the cursor and database connection
+    table = cur.fetchall()
+    cur.close()
+    db.close()
 
-        query = "SELECT cities.name FROM cities \
-                 LEFT JOIN states ON cities.state_id = states.id \
-                 WHERE states.name LIKE BINARY %s \
-                 ORDER BY cities.id ASC"
-        cursor.execute(query, (state_name,))
+    # Use list comprehension and join to create a comma-separated string
+    str_cities = ", ".join(row[0] for row in table)
 
-        rows = cursor.fetchall()
-
-        if rows:
-            str_cities = ', '.join(row[0] for row in rows)
-            print(str_cities)
-        else:
-            print("No cities found for the given state.")
-
-    except MySQLdb.Error as e:
-        print(f"Error: {e}")
-    finally:
-        if cursor:
-            cursor.close()
-        if db:
-            db.close()
+    # Print the result
+    print(str_cities)

@@ -13,7 +13,7 @@ if __name__ == "__main__":
         sys.exit(1)
 
     database = sys.argv[3]
-    username = sys.argv[1]
+    user = sys.argv[1]
     password = sys.argv[2]
 
     db = MySQLdb.connect(
@@ -28,7 +28,7 @@ if __name__ == "__main__":
 
     cursor.execute("SELECT * FROM states WHERE name LIKE 'N%' ORDER BY id ASC")
 
-    rows = cursor.fetchall() if state[1][0] == "N"
+    rows = cursor.fetchall()
 
     for row in rows:
         print(row)

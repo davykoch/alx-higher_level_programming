@@ -1,6 +1,6 @@
 #!/usr/bin/python3
 """
-lists all states with a name starting with N (upper N):
+lists all states with a name starting with N (upper N)
 takes 3 arguments: mysql username, mysql password, and database name
 """
 import MySQLdb

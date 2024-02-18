@@ -29,7 +29,7 @@ if __name__ == "__main__":
     cursor = db.cursor()
 
     query = "SELECT * FROM states WHERE name LIKE BINARY '%{}%'\
-    ORDER BY states.id ASC"
+    ORDER BY id ASC"
     cursor.execute(query, (state_name,))
 
     rows = cursor.fetchall()

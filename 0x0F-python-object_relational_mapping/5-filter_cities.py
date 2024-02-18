@@ -32,10 +32,11 @@ if __name__ == "__main__":
              ORDER BY id ASC"
     cursor.execute(query, (state_name,))
 
-    result = cursor.fetchone()
+    rows = cursor.fetchall()
 
-    if result[0]:
-        print(result[0])
+    if rows:
+        cities = ', '.join(row[0] for row in rows)
+        print(cities)
 
     cursor.close()
     db.close()

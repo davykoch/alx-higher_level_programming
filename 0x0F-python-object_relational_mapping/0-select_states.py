@@ -7,7 +7,7 @@ import MySQLdb
 import sys
 
 
-if __name__ == "main":
+if __name__ == "__main__":
     db_name = input("Enter database name: ")
     user = input("Enter username: ")
     password = input("Enter password: ")

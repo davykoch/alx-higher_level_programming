@@ -1,6 +1,6 @@
 #!/usr/bin/python3
 """
-lists all states with a name starting with N (upper N) from the database hbtn_0e_0_usa:
+lists all states with a name starting with N (upper N):
 takes 3 arguments: mysql username, mysql password, and database name
 """
 import MySQLdb
@@ -12,9 +12,9 @@ if __name__ == "__main__":
         print("Usage: {} <username> <password> <database>".format(sys.argv[0]))
         sys.exit(1)
 
+    database = sys.argv[3]
     username = sys.argv[1]
     password = sys.argv[2]
-    database = sys.argv[3]
 
     db = MySQLdb.connect(
         host="localhost",

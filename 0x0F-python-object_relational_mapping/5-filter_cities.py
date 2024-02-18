@@ -35,12 +35,10 @@ if __name__ == "__main__":
 
     rows = cursor.fetchall()
 
+    str_cities = ', '.join(row[0] for row in rows)
+
     if rows:
-        print(cities)
+        print(str_cities)
 
     cursor.close()
     db.close()
-
-    str_cities = ', '.join(row[0] for row in rows)
-
-    print(str_cities)

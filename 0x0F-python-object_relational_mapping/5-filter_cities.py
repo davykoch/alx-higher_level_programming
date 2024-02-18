@@ -17,27 +17,35 @@ if __name__ == "__main__":
     database = sys.argv[3]
     state_name = sys.argv[4]
 
-    db = MySQLdb.connect(
-        host="localhost",
-        port=3306,
-        user=user,
-        passwd=password,
-        db=database
-    )
+    try:
+        db = MySQLdb.connect(
+            host="localhost",
+            port=3306,
+            user=user,
+            passwd=password,
+            db=database
+        )
 
-    cursor = db.cursor()
+        cursor = db.cursor()
 
-    query = "SELECT cities.name FROM cities \
-             LEFT JOIN states ON cities.state_id = states.id \
-             WHERE states.name LIKE BINARY %s \
-             ORDER BY cities.id ASC"
-    cursor.execute(query, (state_name,))
+        query = "SELECT cities.name FROM cities \
+                 LEFT JOIN states ON cities.state_id = states.id \
+                 WHERE states.name LIKE BINARY %s \
+                 ORDER BY cities.id ASC"
+        cursor.execute(query, (state_name,))
 
-    rows = cursor.fetchall()
+        rows = cursor.fetchall()
 
-    if rows:
-        str_cities = ', '.join(row[0] for row in rows)
-        print(str_cities)
+        if rows:
+            str_cities = ', '.join(row[0] for row in rows)
+            print(str_cities)
+        else:
+            print("No cities found for the given state.")
 
-    cursor.close()
-    db.close()
+    except MySQLdb.Error as e:
+        print(f"Error: {e}")
+    finally:
+        if cursor:
+            cursor.close()
+        if db:
+            db.close()

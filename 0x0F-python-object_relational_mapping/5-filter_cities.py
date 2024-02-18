@@ -1,13 +1,12 @@
 #!/usr/bin/python3
 """
-Script that lists all cities of a given state from the hbtn_0e_4_usa database
+Takes in the name of a state as an argument and lists all cities of that state.
 """
 
 import MySQLdb
 import sys
 
 if __name__ == "__main__":
-    # Connect to the database
     db = MySQLdb.connect(
         host='localhost',
         user=sys.argv[1],
@@ -16,24 +15,20 @@ if __name__ == "__main__":
         port=3306
     )
 
-    # Get the state name from command line arguments
     state_name = sys.argv[4]
 
-    # Create a cursor and execute the query
-    cur = db.cursor()
-    cur.execute("SELECT cities.name FROM cities\
-                 LEFT JOIN states\
-                 ON states.id = cities.state_id\
-                 WHERE states.name LIKE BINARY (%s) ORDER BY cities.id ASC",
-                (state_name,))
+    cursor = db.cursor()
 
-    # Fetch all rows and close the cursor and database connection
-    table = cur.fetchall()
-    cur.close()
+    query = "SELECT cities.name FROM cities\
+             LEFT JOIN states\
+             ON states.id = cities.state_id\
+             WHERE states.name LIKE BINARY (%s) ORDER BY cities.id ASC"
+    cursor.execute(query, (state_name,))
+
+    rows = cursor.fetchall()
+    cursor.close()
     db.close()
 
-    # Use list comprehension and join to create a comma-separated string
-    str_cities = ", ".join(row[0] for row in table)
+    str_cities = ", ".join(row[0] for row in row)
 
-    # Print the result
     print(str_cities)

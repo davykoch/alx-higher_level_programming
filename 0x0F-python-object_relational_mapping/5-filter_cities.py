@@ -35,9 +35,8 @@ if __name__ == "__main__":
 
     rows = cursor.fetchall()
 
-    str_cities = ', '.join(row[0] for row in rows)
-
     if rows:
+        str_cities = ', '.join(row[0] for row in rows)
         print(str_cities)
 
     cursor.close()

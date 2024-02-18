@@ -19,16 +19,17 @@ if __name__ == "__main__":
 
     cursor = db.cursor()
 
-    query = "SELECT cities.name FROM cities\
-             LEFT JOIN states\
-             ON states.id = cities.state_id\
-             WHERE states.name LIKE BINARY (%s) ORDER BY cities.id ASC"
-    cursor.execute(query, (state_name,))
+    cursor.execute("SELECT cities.name FROM cities "
+                   "LEFT JOIN states "
+                   "ON states.id = cities.state_id "
+                   "WHERE states.name LIKE BINARY (%s) "
+                   "ORDER BY cities.id ASC",
+                   (state_name,))
 
     rows = cursor.fetchall()
     cursor.close()
     db.close()
 
-    str_cities = ", ".join(row[0] for row in row)
+    str_cities = ", ".join(row[0] for row in rows)
 
     print(str_cities)

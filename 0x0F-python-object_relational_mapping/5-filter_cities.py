@@ -27,7 +27,7 @@ if __name__ == "__main__":
 
     cursor = db.cursor()
 
-    query = "SELECT GROUP_CONCAT(name SEPARATOR ', ') FROM cities \
+    query = "SELECT name FROM cities \
              WHERE state_id = (SELECT id FROM states WHERE name = %s) \
              ORDER BY id ASC"
     cursor.execute(query, (state_name,))

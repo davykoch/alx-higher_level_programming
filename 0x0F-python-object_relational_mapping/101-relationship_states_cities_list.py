@@ -20,14 +20,13 @@ if __name__ == "__main__":
     Session = sessionmaker(bind=engine)
     session = Session()
 
-    result = (session.query(State, City)
-              .filter(State.id == City.state_id)
+    result = (session.query(State)
+              .options(joinedload(State.cities))
               .order_by(State.id, City.id))
 
-    for state, city in result:
-        if not hasattr(state, 'printed'):
-            print(f"{state.id}: {state.name}")
-            setattr(state, 'printed', True)
-        print(f"    {city.id}: {city.name}")
+    for state in result:
+        print(f"{state.id}: {state.name}")
+        for city in state.cities:
+            print(f"    {city.id}: {city.name}")
 
     session.close()

@@ -6,6 +6,7 @@ Module containing the City class.
 from sqlalchemy import Column, Integer, String, ForeignKey
 from relationship_base import Base
 
+
 class City(Base):
     """
     City class.
